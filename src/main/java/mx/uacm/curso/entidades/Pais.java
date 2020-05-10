@@ -74,4 +74,6 @@ public class Pais {
     public void setLongitud(Double longitud) {
         this.longitud = longitud;
     }
+    
+    
 }
