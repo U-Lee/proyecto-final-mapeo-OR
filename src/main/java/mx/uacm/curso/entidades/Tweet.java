@@ -6,38 +6,56 @@
 package mx.uacm.curso.entidades;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tweets")
+@Table(name = "tweets")
 public class Tweet {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @SequenceGenerator(name = "sec_twe", sequenceName = "tweets_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "sec_twe", strategy = GenerationType.SEQUENCE)
     private Integer id;
-    
-    @Column(name="fecha")
+
+    @Column(name = "fecha")
     private Date fecha;
-    
-    @Column(name="contenido")
+
+    @Column(name = "contenido")
     private String contenido;
-    
-    @Column(name="likes")
+
+    @Column(name = "likes")
     private Integer likes;
-    
+
     @ManyToOne
-    @JoinColumn(name="id_usuario")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
+
+    @ManyToMany(mappedBy = "tweets")
+    private List<Hashtag> hashtags;
+
+    @Override
+    public String toString() {
+        return "{id:" + this.id + ", fecha:" + this.fecha + ", contenido:" + this.contenido + "}";
+    }
+
+    public List<Hashtag> getHashtags() {
+        return hashtags;
+    }
+
+    public void setHashtags(List<Hashtag> hashtags) {
+        this.hashtags = hashtags;
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -78,6 +96,5 @@ public class Tweet {
     public void setLikes(Integer likes) {
         this.likes = likes;
     }
-    
-    
+
 }

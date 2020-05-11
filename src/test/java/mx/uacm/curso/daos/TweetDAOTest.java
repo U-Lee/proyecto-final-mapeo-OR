@@ -63,11 +63,15 @@ public class TweetDAOTest {
 
     @Test
     public void buscarPorIdTest() throws Exception {
-        Tweet t = tweetDAO.buscarPorId(1);
-        Assertions.assertNotNull(t);
-        
+        Tweet t1 = tweetDAO.buscarPorId(1);
+        Assertions.assertNotNull(t1);
+
         //Probar mapeo de Tweet a Usuario
-        assertEquals(1,t.getId());
+        assertEquals(1, t1.getId());
+
+        //Probar mapeo de Tweet a Hashtag
+        Tweet t2 = tweetDAO.buscarPorId(2);
+        assertEquals(5, t2.getHashtags().size());
     }
 
 }

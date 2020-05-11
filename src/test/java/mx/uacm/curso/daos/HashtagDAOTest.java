@@ -13,6 +13,7 @@ import mx.uacm.curso.entidades.Hashtag;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -62,8 +63,11 @@ public class HashtagDAOTest {
 
     @Test
     public void buscarPorIdTest() throws Exception {
-        Hashtag h = hashtagDAO.buscarPorId(1);
+        Hashtag h = hashtagDAO.buscarPorId(2);
         Assertions.assertNotNull(h);
+
+        //Probar mapeo de Hashtag a Tweet
+        assertEquals(6, h.getTweets().size());
     }
 
 }
