@@ -13,6 +13,7 @@ import mx.uacm.curso.entidades.Usuario;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -64,6 +65,9 @@ public class UsuarioDAOTest {
     public void buscarPorIdTest() throws Exception {
         Usuario u = usuarioDAO.buscarPorId(1);
         Assertions.assertNotNull(u);
+        
+        //Probar mapeo de Usuario a Tweet
+        assertEquals(1,u.getTweets().size());
     }
 
 }

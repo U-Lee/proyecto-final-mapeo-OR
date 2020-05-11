@@ -5,11 +5,13 @@
  */
 package mx.uacm.curso.entidades;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,6 +33,17 @@ public class Usuario {
    
    @Column(name="seguidores")
    private Integer seguidores;
+   
+   @OneToMany(mappedBy="usuario")
+   private List<Tweet> tweets;
+
+    public List<Tweet> getTweets() {
+        return tweets;
+    }
+
+    public void setTweets(List<Tweet> tweets) {
+        this.tweets = tweets;
+    }
 
     public Integer getId() {
         return id;
