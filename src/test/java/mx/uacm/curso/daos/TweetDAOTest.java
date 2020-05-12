@@ -72,6 +72,8 @@ public class TweetDAOTest {
         //Probar mapeo de Tweet a Hashtag
         Tweet t2 = tweetDAO.buscarPorId(2);
         assertEquals(5, t2.getHashtags().size());
+        
+        //Probar mapeo de Tweet a Lugar
+        assertEquals(1, t1.getLugar().getId());
     }
-
-}
+    }

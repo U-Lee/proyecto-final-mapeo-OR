@@ -13,6 +13,7 @@ import mx.uacm.curso.entidades.Lugar;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -64,6 +65,9 @@ public class LugarDAOTest {
     public void buscarPorIdTest() throws Exception {
         Lugar lugar = lugarDAO.buscarPorId(1);
         Assertions.assertNotNull(lugar);
+        
+        //Probar mapeo de Lugar a Tweet
+        assertEquals(1,lugar.getTweet().getId());
     }
 
 }

@@ -7,6 +7,7 @@ package mx.uacm.curso.entidades;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -44,9 +46,21 @@ public class Tweet {
     @ManyToMany(mappedBy = "tweets")
     private List<Hashtag> hashtags;
 
+    //MAPEAR Tweet con Lugar
+    @OneToOne(mappedBy = "tweet")
+    private Lugar lugar;
+
     @Override
     public String toString() {
         return "{id:" + this.id + ", fecha:" + this.fecha + ", contenido:" + this.contenido + "}";
+    }
+
+    public Lugar getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(Lugar lugar) {
+        this.lugar = lugar;
     }
 
     public List<Hashtag> getHashtags() {
