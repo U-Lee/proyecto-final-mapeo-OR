@@ -75,5 +75,8 @@ public class TweetDAOTest {
         
         //Probar mapeo de Tweet a Lugar
         assertEquals(1, t1.getLugar().getId());
+        
+        //Probar mapeo de Tweet a Emocion
+        assertEquals(1, t1.getEmocion().getId());
     }
     }

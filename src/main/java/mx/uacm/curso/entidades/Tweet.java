@@ -50,6 +50,17 @@ public class Tweet {
     @OneToOne(mappedBy = "tweet")
     private Lugar lugar;
 
+    @OneToOne(mappedBy = "tweet")
+    private Emocion emocion;
+
+    public Emocion getEmocion() {
+        return emocion;
+    }
+
+    public void setEmocion(Emocion emocion) {
+        this.emocion = emocion;
+    }
+
     @Override
     public String toString() {
         return "{id:" + this.id + ", fecha:" + this.fecha + ", contenido:" + this.contenido + "}";

@@ -13,6 +13,7 @@ import mx.uacm.curso.entidades.Emocion;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -64,6 +65,9 @@ public class EmocionDAOTest {
     public void buscarPorIdTest() throws Exception {
         Emocion e = emocionDAO.buscarPorId(1);
         Assertions.assertNotNull(e);
+
+        //Probar mapeo de Emocion a Tweet
+        assertEquals(1, e.getTweet().getId());
     }
 
 }
