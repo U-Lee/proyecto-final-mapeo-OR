@@ -13,6 +13,7 @@ import mx.uacm.curso.entidades.Pais;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -62,8 +63,12 @@ public class PaisDAOTest {
 
     @Test
     public void buscarPorIdTest() throws Exception {
-        Pais p = paisDAO.buscarPorId(1);
+        Pais p = paisDAO.buscarPorId(2);
         Assertions.assertNotNull(p);
+
+        //Propar mapeo de Pais a Lugar
+        assertEquals(12, p.getLugar().size());
+
     }
 
 }

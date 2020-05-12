@@ -63,11 +63,14 @@ public class LugarDAOTest {
 
     @Test
     public void buscarPorIdTest() throws Exception {
-        Lugar lugar = lugarDAO.buscarPorId(1);
-        Assertions.assertNotNull(lugar);
+        Lugar l = lugarDAO.buscarPorId(1);
+        Assertions.assertNotNull(l);
         
         //Probar mapeo de Lugar a Tweet
-        assertEquals(1,lugar.getTweet().getId());
+        assertEquals(1,l.getTweet().getId());
+        
+        //Probar mapeo de Lugar a Pais
+        assertEquals(1,l.getPais().getId());
     }
 
 }
