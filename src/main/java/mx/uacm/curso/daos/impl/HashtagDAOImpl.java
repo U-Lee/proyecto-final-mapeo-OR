@@ -5,7 +5,9 @@
  */
 package mx.uacm.curso.daos.impl;
 
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import mx.uacm.curso.daos.HashtagDAO;
 import mx.uacm.curso.entidades.Hashtag;
 
@@ -13,6 +15,13 @@ public class HashtagDAOImpl extends GenericDAOImpl<Hashtag, Integer> implements 
 
     public HashtagDAOImpl(EntityManager em) {
         super(em);
+    }
+
+    @Override
+    public List<Hashtag> nombresHashtags() {
+        TypedQuery<Hashtag> consulta = em.createQuery("SELECT h FROM Hashtag h", Hashtag.class);
+        List<Hashtag> hashtags = consulta.getResultList();        
+        return hashtags;
     }
 
 }

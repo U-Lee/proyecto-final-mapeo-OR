@@ -5,6 +5,7 @@
  */
 package mx.uacm.curso.daos;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -64,10 +65,19 @@ public class HashtagDAOTest {
     @Test
     public void buscarPorIdTest() throws Exception {
         Hashtag h = hashtagDAO.buscarPorId(2);
-        Assertions.assertNotNull(h);
-
-        //Probar mapeo de Hashtag a Tweet
+        Assertions.assertNotNull(h);    
+    }
+    
+    @Test
+    public void probarMapeoHashtagTweet(){
+        Hashtag h = hashtagDAO.buscarPorId(2);
         assertEquals(6, h.getTweets().size());
+    }
+    
+    @Test
+    public void obtenerTodosTest(){
+        List<Hashtag> hashtags = hashtagDAO.nombresHashtags();
+        assertEquals(48,hashtags.size());
     }
 
 }
