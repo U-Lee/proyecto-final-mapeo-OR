@@ -6,9 +6,14 @@
 package mx.uacm.curso.daos;
 
 import java.util.List;
+import mx.uacm.curso.dtos.ConteoHashtagDTO;
 import mx.uacm.curso.entidades.Hashtag;
 
 public interface HashtagDAO extends GenericDAO<Hashtag, Integer> {
 
     List<Hashtag> nombresHashtags();
+    
+    //List<String> nombresHashtags1();
+    
+    List<ConteoHashtagDTO> conteoHashtags();
 }

@@ -24,6 +24,11 @@ public class ConteoHashtagDTO {
         this.totalTweets = totalTweets;
     }
 
+    @Override
+    public String toString() {
+        return "{nombre:" + this.nombreHashtag + ", total tweets:" + this.totalTweets + "}";
+    }
+
     public String getNombreHashtag() {
         return nombreHashtag;
     }
