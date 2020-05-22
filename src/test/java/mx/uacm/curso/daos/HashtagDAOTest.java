@@ -86,10 +86,15 @@ public class HashtagDAOTest {
 
     @Test
     public void conteoHashtagDTO() {
-        List<ConteoHashtagDTO> h = hashtagDAO.conteoHashtags();
-        System.out.println("Hashtag con tweets:" + h);
-
+        //Test que prueba al método List<ConteoHashDTO> conteoHashtags()
+        List<ConteoHashtagDTO> h = hashtagDAO.conteoHashtags();    
         assertEquals(10, h.size());
+        
+        //Test que prueba al método List<ConteoHashDTO> conteoHashtags(String patronCadena)
+        List<ConteoHashtagDTO> h1 = hashtagDAO.conteoHashtags("%git%");        
+        assertEquals(3, h1.size());
     }
+    
+    
 
 }
