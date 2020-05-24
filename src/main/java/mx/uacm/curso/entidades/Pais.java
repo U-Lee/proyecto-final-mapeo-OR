@@ -16,37 +16,37 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="paises")
+@Table(name = "paises")
 public class Pais {
 
     @Id
-    @Column(name="id")
-    @SequenceGenerator(name = "sec_pais", sequenceName = "paises_id_seq", allocationSize = 1)
-    @GeneratedValue(generator = "sec_pais", strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
+    @SequenceGenerator(name = "sec_pai", sequenceName = "paises_id_seq", allocationSize = 1)
+   // @GeneratedValue(generator = "sec_pai", strategy = GenerationType.SEQUENCE)
     private Integer id;
-    
-    @Column(name="codigo")
+
+    @Column(name = "codigo")
     private String codigo;
-    
-    @Column(name="nombre")
+
+    @Column(name = "nombre")
     private String nombre;
-    
-    @Column(name="latitud")
+
+    @Column(name = "latitud")
     private Double latitud;
-    
-    @Column(name="longitud")
+
+    @Column(name = "longitud")
     private Double longitud;
 
+    @OneToMany(mappedBy = "pais")
+    private List<Lugar> lugares;
+
     public List<Lugar> getLugar() {
-        return lugar;
+        return lugares;
     }
 
-    public void setLugar(List<Lugar> lugar) {
-        this.lugar = lugar;
+    public void setLugar(List<Lugar> lugares) {
+        this.lugares = lugares;
     }
-    
-   @OneToMany(mappedBy="pais")
-   private List<Lugar> lugar;
 
     public Integer getId() {
         return id;
@@ -87,6 +87,5 @@ public class Pais {
     public void setLongitud(Double longitud) {
         this.longitud = longitud;
     }
-    
-    
+
 }

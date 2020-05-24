@@ -5,8 +5,10 @@
  */
 package mx.uacm.curso.daos;
 
+import java.util.List;
 import mx.uacm.curso.entidades.Tweet;
 
 public interface TweetDAO extends GenericDAO<Tweet, Integer> {
 
+    List<Tweet> tweetsPorHashtags(List<String> nombresHashtags);
 }

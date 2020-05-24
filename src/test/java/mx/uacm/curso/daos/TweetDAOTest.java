@@ -5,6 +5,8 @@
  */
 package mx.uacm.curso.daos;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -79,4 +81,17 @@ public class TweetDAOTest {
         //Probar mapeo de Tweet a Emocion
         assertEquals(1, t1.getEmocion().getId());
     }
+    
+    
+    @Test
+    public void nombresHashtag(){
+    
+        List<String> m = new ArrayList<>();
+        m.add("github");
+        m.add("gitlab");
+        List<Tweet> t = tweetDAO.tweetsPorHashtags(m);
+        assertEquals(8, t.size());
+
+}
+    
     }

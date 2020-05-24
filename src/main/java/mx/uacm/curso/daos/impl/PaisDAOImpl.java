@@ -5,7 +5,9 @@
  */
 package mx.uacm.curso.daos.impl;
 
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import mx.uacm.curso.daos.PaisDAO;
 import mx.uacm.curso.entidades.Pais;
 
@@ -14,5 +16,4 @@ public class PaisDAOImpl extends GenericDAOImpl<Pais, Integer> implements PaisDA
     public PaisDAOImpl(EntityManager em) {
         super(em);
     }
-
 }

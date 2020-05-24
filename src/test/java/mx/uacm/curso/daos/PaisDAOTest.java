@@ -5,6 +5,9 @@
  */
 package mx.uacm.curso.daos;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -69,6 +72,5 @@ public class PaisDAOTest {
         //Propar mapeo de Pais a Lugar
         assertEquals(12, p.getLugar().size());
 
-    }
-
+    }       
 }
