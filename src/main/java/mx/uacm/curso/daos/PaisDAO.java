@@ -10,4 +10,6 @@ import mx.uacm.curso.entidades.Pais;
 
 public interface PaisDAO extends GenericDAO<Pais, Integer> {
 
+    List<Pais> obtenPorTweetsIds(List<Integer> tweetsIds);
+
 }

@@ -72,5 +72,18 @@ public class PaisDAOTest {
         //Propar mapeo de Pais a Lugar
         assertEquals(12, p.getLugar().size());
 
-    }       
+    }
+
+    @Test
+    public void obtenPorTweetsIds() {
+        List<Integer> tweetIds = new ArrayList<>();
+        tweetIds.add(1);
+        tweetIds.add(2);
+        tweetIds.add(3);
+        tweetIds.add(4);
+        tweetIds.add(7);
+        List<Pais> h = paisDAO.obtenPorTweetsIds(tweetIds);
+        assertEquals(3, h.size());
+    }
+
 }

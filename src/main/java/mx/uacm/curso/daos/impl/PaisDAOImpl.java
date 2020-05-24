@@ -16,4 +16,13 @@ public class PaisDAOImpl extends GenericDAOImpl<Pais, Integer> implements PaisDA
     public PaisDAOImpl(EntityManager em) {
         super(em);
     }
+
+    @Override
+    public List<Pais> obtenPorTweetsIds(List<Integer> tweetsIds) {
+        TypedQuery<Pais> consulta = em.createQuery("SELECT p FROM Pais p INNER JOIN p.lugares l WHERE l.tweet.id IN(:tweetsIds) GROUP BY p", Pais.class);
+        consulta.setParameter("tweetsIds", tweetsIds);
+        List<Pais> resultados = consulta.getResultList();
+        return resultados;
+    }
+
 }
