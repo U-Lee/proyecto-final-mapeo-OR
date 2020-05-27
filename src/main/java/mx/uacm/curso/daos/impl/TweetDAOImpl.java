@@ -5,6 +5,7 @@
  */
 package mx.uacm.curso.daos.impl;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -20,10 +21,20 @@ public class TweetDAOImpl extends GenericDAOImpl<Tweet, Integer> implements Twee
 
     @Override
     public List<Tweet> tweetsPorHashtags(List<String> nombresHashtags) {
-        
+
         TypedQuery<Tweet> consulta = em.createQuery("SELECT t FROM Tweet t INNER JOIN t.hashtags h WHERE h.nombre IN(:nombresHashtags)", Tweet.class);
         consulta.setParameter("nombresHashtags", nombresHashtags);
         List<Tweet> resultados = consulta.getResultList();
+        return resultados;
+    }
+
+    @Override
+    public List<Integer> tweetsIdsPorHashtagsYFecha(List<String> nombresHashtags, Date fechaMin, Date fechaMax) {
+        TypedQuery<Integer> consulta = em.createQuery("SELECT t.id FROM Tweet t INNER JOIN t.hashtags h WHERE h.nombre IN(:nombresHashtags) AND t.fecha BETWEEN :fechaMin AND :fechaMax GROUP BY t.id", Integer.class);
+        consulta.setParameter("nombresHashtags", nombresHashtags);
+        consulta.setParameter("fechaMin", fechaMin);
+        consulta.setParameter("fechaMax", fechaMax);
+        List<Integer> resultados = consulta.getResultList();
         return resultados;
     }
 

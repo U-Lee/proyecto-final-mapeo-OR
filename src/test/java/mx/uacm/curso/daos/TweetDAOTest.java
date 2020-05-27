@@ -6,6 +6,8 @@
 package mx.uacm.curso.daos;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -74,24 +76,35 @@ public class TweetDAOTest {
         //Probar mapeo de Tweet a Hashtag
         Tweet t2 = tweetDAO.buscarPorId(2);
         assertEquals(5, t2.getHashtags().size());
-        
+
         //Probar mapeo de Tweet a Lugar
         assertEquals(1, t1.getLugar().getId());
-        
+
         //Probar mapeo de Tweet a Emocion
         assertEquals(1, t1.getEmocion().getId());
     }
-    
-    
+
     @Test
-    public void nombresHashtag(){
-    
-        List<String> m = new ArrayList<>();
-        m.add("github");
-        m.add("gitlab");
-        List<Tweet> t = tweetDAO.tweetsPorHashtags(m);
+    public void nombresHashtag() {
+
+        List<String> nombresHashtags = new ArrayList<>();
+        nombresHashtags.add("github");
+        nombresHashtags.add("gitlab");
+        List<Tweet> t = tweetDAO.tweetsPorHashtags(nombresHashtags);
         assertEquals(8, t.size());
 
-}
-    
     }
+
+    @Test
+    public void tweetsIdsPorHashtagsYFecha() {
+        List<String> nombresHashtags = new ArrayList<>();
+        nombresHashtags.add("github");
+        nombresHashtags.add("gitlab");
+        GregorianCalendar cal = new GregorianCalendar(2020, 02, 10);
+        Date fechaMinima = cal.getTime();
+        GregorianCalendar cal2 = new GregorianCalendar(2020, 03, 10);
+        Date fechaMaxima = cal2.getTime();
+        List<Integer> listaIds = tweetDAO.tweetsIdsPorHashtagsYFecha(nombresHashtags, fechaMinima, fechaMaxima);
+        assertEquals(2, listaIds.size());
+    }
+}
