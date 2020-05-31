@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import mx.uacm.curso.daos.impl.TweetDAOImpl;
+import mx.uacm.curso.entidades.Pais;
 import mx.uacm.curso.entidades.Tweet;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -106,5 +107,19 @@ public class TweetDAOTest {
         Date fechaMaxima = cal2.getTime();
         List<Integer> listaIds = tweetDAO.tweetsIdsPorHashtagsYFecha(nombresHashtags, fechaMinima, fechaMaxima);
         assertEquals(2, listaIds.size());
+    }
+
+    @Test
+    public void filtrarTweetsIdsPorPais() {
+        List<Integer> filtarTweetsIdsPorPais = new ArrayList<>();
+        filtarTweetsIdsPorPais.add(1);
+        filtarTweetsIdsPorPais.add(2);
+        filtarTweetsIdsPorPais.add(4);
+        filtarTweetsIdsPorPais.add(5);
+        filtarTweetsIdsPorPais.add(7);
+        Pais pais = new Pais();
+        pais.setId(2);
+        List<Integer> listaIds = tweetDAO.filtrarTweetsIdsPorPais(filtarTweetsIdsPorPais, pais);
+        assertEquals(3, listaIds.size());
     }
 }
