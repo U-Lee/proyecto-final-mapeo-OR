@@ -5,10 +5,13 @@
  */
 package mx.uacm.curso.daos;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import mx.uacm.curso.daos.impl.EmocionDAOImpl;
+import mx.uacm.curso.dtos.EmocionPredominanteDTO;
 import mx.uacm.curso.entidades.Emocion;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -68,6 +71,21 @@ public class EmocionDAOTest {
 
         //Probar mapeo de Emocion a Tweet
         assertEquals(1, e.getTweet().getId());
+    }
+
+    @Test
+    public void emocionPredominantePorTweetsIds() {
+        List<Integer> tweetsIds = new ArrayList<>();
+        tweetsIds.add(1);
+        tweetsIds.add(2);
+        tweetsIds.add(3);
+        tweetsIds.add(4);
+        tweetsIds.add(5);
+
+        EmocionPredominanteDTO e = emocionDAO.emocionPredominantePorTweetsIds(tweetsIds);
+
+        assertEquals("animado", e.getEmocion());
+        assertEquals(0.5999822, e.getPromedio());
     }
 
 }

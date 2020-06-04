@@ -5,9 +5,13 @@
  */
 package mx.uacm.curso.daos;
 
+import java.util.List;
+import mx.uacm.curso.dtos.EmocionPredominanteDTO;
 import mx.uacm.curso.entidades.Emocion;
 
 
 public interface EmocionDAO extends GenericDAO<Emocion,Integer>{
+    
+    public EmocionPredominanteDTO emocionPredominantePorTweetsIds(List<Integer> tweetsIds);
     
 }
