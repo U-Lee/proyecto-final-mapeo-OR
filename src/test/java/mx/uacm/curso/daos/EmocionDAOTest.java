@@ -69,7 +69,7 @@ public class EmocionDAOTest {
         Emocion e = emocionDAO.buscarPorId(1);
         Assertions.assertNotNull(e);
 
-        //Probar mapeo de Emocion a Tweet
+        //Probar mapeo de Emocion a Tweet (1-1)
         assertEquals(1, e.getTweet().getId());
     }
 

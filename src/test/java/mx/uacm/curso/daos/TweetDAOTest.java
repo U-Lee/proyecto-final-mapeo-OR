@@ -71,28 +71,27 @@ public class TweetDAOTest {
         Tweet t1 = tweetDAO.buscarPorId(1);
         Assertions.assertNotNull(t1);
 
-        //Probar mapeo de Tweet a Usuario
+        //Probar mapeo de Tweet a Usuario (n-1)
         assertEquals(1, t1.getId());
 
-        //Probar mapeo de Tweet a Hashtag
+        //Probar mapeo de Tweet a Hashtag (n-n)
         Tweet t2 = tweetDAO.buscarPorId(2);
         assertEquals(5, t2.getHashtags().size());
 
-        //Probar mapeo de Tweet a Lugar
+        //Probar mapeo de Tweet a Lugar (1-1)
         assertEquals(1, t1.getLugar().getId());
 
-        //Probar mapeo de Tweet a Emocion
+        //Probar mapeo de Tweet a Emocion (1-1)
         assertEquals(1, t1.getEmocion().getId());
     }
 
     @Test
-    public void nombresHashtag() {
-
+    public void tweetsPorHashtags() {
         List<String> nombresHashtags = new ArrayList<>();
         nombresHashtags.add("github");
         nombresHashtags.add("gitlab");
         List<Tweet> t = tweetDAO.tweetsPorHashtags(nombresHashtags);
-        assertEquals(8, t.size());
+        assertEquals(7, t.size());
 
     }
 
@@ -101,10 +100,15 @@ public class TweetDAOTest {
         List<String> nombresHashtags = new ArrayList<>();
         nombresHashtags.add("github");
         nombresHashtags.add("gitlab");
-        GregorianCalendar cal = new GregorianCalendar(2020, 02, 10);
+        //Los meses inician desde 0(enero)
+        //2020/febrero/01 = 2020-02-01(jpql) = 2020-01-01(GregorianCalendar)
+        GregorianCalendar cal = new GregorianCalendar(2020, 01, 01);
         Date fechaMinima = cal.getTime();
-        GregorianCalendar cal2 = new GregorianCalendar(2020, 03, 10);
+        //2020/marzo/10 = 2020-03-10(jpql) = 2020-02-10(GregorianCalendar)
+        GregorianCalendar cal2 = new GregorianCalendar(2020, 02, 10);
         Date fechaMaxima = cal2.getTime();
+        //System.out.println("fechaMin" + fechaMinima);
+        //System.out.println("fechaMax" + fechaMaxima);
         List<Integer> listaIds = tweetDAO.tweetsIdsPorHashtagsYFecha(nombresHashtags, fechaMinima, fechaMaxima);
         assertEquals(2, listaIds.size());
     }

@@ -66,10 +66,10 @@ public class LugarDAOTest {
         Lugar l = lugarDAO.buscarPorId(1);
         Assertions.assertNotNull(l);
 
-        //Probar mapeo de Lugar a Tweet
+        //Probar mapeo de Lugar a Tweet (1-1)
         assertEquals(1, l.getTweet().getId());
 
-        //Probar mapeo de Lugar a Pais
+        //Probar mapeo de Lugar a Pais (n-1)
         assertEquals(1, l.getPais().getId());
     }
 

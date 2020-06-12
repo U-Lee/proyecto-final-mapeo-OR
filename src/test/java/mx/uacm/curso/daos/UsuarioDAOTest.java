@@ -65,9 +65,8 @@ public class UsuarioDAOTest {
     public void buscarPorIdTest() throws Exception {
         Usuario u = usuarioDAO.buscarPorId(1);
         Assertions.assertNotNull(u);
-        
-        //Probar mapeo de Usuario a Tweet
-        assertEquals(1,u.getTweets().size());
-    }
 
+        //Probar mapeo de Tweet a Usuario (n-1)
+        assertEquals(1, u.getTweets().size());
+    }
 }

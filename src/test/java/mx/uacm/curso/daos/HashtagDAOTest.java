@@ -75,23 +75,25 @@ public class HashtagDAOTest {
     @Test
     public void probarMapeoHashtagTweet() {
         Hashtag h = hashtagDAO.buscarPorId(2);
+
+        //Probar mapeo de Hashtag a Tweet (n-n)
         assertEquals(6, h.getTweets().size());
     }
 
     @Test
     public void obtenerTodosTest() {
-        List<Hashtag> h = hashtagDAO.nombresHashtags();
+        List<String> h = hashtagDAO.nombresHashtags();
         assertEquals(48, h.size());
     }
 
     @Test
-    public void conteoHashtagDTO() {
+    public void conteoHashtags() {
         //Test que prueba al método List<ConteoHashDTO> conteoHashtags()
         List<ConteoHashtagDTO> h = hashtagDAO.conteoHashtags();
-        assertEquals(10, h.size());
+        assertEquals(48, h.size());
 
         //Test que prueba al método List<ConteoHashDTO> conteoHashtags(String patronCadena)
-        List<ConteoHashtagDTO> h1 = hashtagDAO.conteoHashtags("%git%");
+        List<ConteoHashtagDTO> h1 = hashtagDAO.conteoHashtags("git%");
         assertEquals(3, h1.size());
     }
 

@@ -20,16 +20,16 @@ public class HashtagDAOImpl extends GenericDAOImpl<Hashtag, Integer> implements 
 
     //Regresa todos los valores de la columna nombre de la tabla hashtags.
     @Override
-    public List<Hashtag> nombresHashtags() {
-        TypedQuery<Hashtag> consulta = em.createQuery("SELECT h FROM Hashtag h", Hashtag.class);
-        List<Hashtag> hashtags = consulta.getResultList();
+    public List<String> nombresHashtags() {
+        TypedQuery<String> consulta = em.createQuery("SELECT h.nombre FROM Hashtag h", String.class);
+        List<String> hashtags = consulta.getResultList();
         return hashtags;
     }
 
     //Regresa todos los hashtags y para cada uno de ellos el total de tweets que tiene asociado.
     @Override
     public List<ConteoHashtagDTO> conteoHashtags() {
-        TypedQuery<ConteoHashtagDTO> consulta = em.createQuery("SELECT new mx.uacm.curso.dtos.ConteoHashtagDTO(h.nombre,COUNT(t.id)) FROM Hashtag h INNER JOIN h.tweets t GROUP BY h.nombre", ConteoHashtagDTO.class);
+        TypedQuery<ConteoHashtagDTO> consulta = em.createQuery("SELECT new mx.uacm.curso.dtos.ConteoHashtagDTO(h.nombre,COUNT(t.id)) FROM Hashtag h LEFT OUTER JOIN h.tweets t GROUP BY h.nombre", ConteoHashtagDTO.class);
         List<ConteoHashtagDTO> resultados = consulta.getResultList();
         return resultados;
     }

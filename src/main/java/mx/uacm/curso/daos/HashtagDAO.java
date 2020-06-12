@@ -11,7 +11,7 @@ import mx.uacm.curso.entidades.Hashtag;
 
 public interface HashtagDAO extends GenericDAO<Hashtag, Integer> {
 
-    List<Hashtag> nombresHashtags();    
+    List<String> nombresHashtags();    
     
     List<ConteoHashtagDTO> conteoHashtags();
     

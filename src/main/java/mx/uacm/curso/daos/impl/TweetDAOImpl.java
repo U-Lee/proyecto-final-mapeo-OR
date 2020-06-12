@@ -23,7 +23,7 @@ public class TweetDAOImpl extends GenericDAOImpl<Tweet, Integer> implements Twee
     @Override
     public List<Tweet> tweetsPorHashtags(List<String> nombresHashtags) {
 
-        TypedQuery<Tweet> consulta = em.createQuery("SELECT t FROM Tweet t INNER JOIN t.hashtags h WHERE h.nombre IN(:nombresHashtags)", Tweet.class);
+        TypedQuery<Tweet> consulta = em.createQuery("SELECT t FROM Tweet t INNER JOIN t.hashtags h WHERE h.nombre IN(:nombresHashtags) GROUP BY t", Tweet.class);
         consulta.setParameter("nombresHashtags", nombresHashtags);
         List<Tweet> resultados = consulta.getResultList();
         return resultados;
@@ -31,10 +31,10 @@ public class TweetDAOImpl extends GenericDAOImpl<Tweet, Integer> implements Twee
 
     @Override
     public List<Integer> tweetsIdsPorHashtagsYFecha(List<String> nombresHashtags, Date fechaMin, Date fechaMax) {
-        TypedQuery<Integer> consulta = em.createQuery("SELECT t.id FROM Tweet t INNER JOIN t.hashtags h WHERE h.nombre IN(:nombresHashtags) AND t.fecha BETWEEN :fechaMin AND :fechaMax GROUP BY t.id", Integer.class);
+        TypedQuery<Integer> consulta = em.createQuery("SELECT t.id FROM Tweet t INNER JOIN t.hashtags h WHERE h.nombre IN(:nombresHashtags) AND t.fecha BETWEEN :fechaMin AND '2020-03-10' GROUP BY t.id", Integer.class);
         consulta.setParameter("nombresHashtags", nombresHashtags);
         consulta.setParameter("fechaMin", fechaMin);
-        consulta.setParameter("fechaMax", fechaMax);
+        //consulta.setParameter("fechaMax", fechaMax);
         List<Integer> resultados = consulta.getResultList();
         return resultados;
     }

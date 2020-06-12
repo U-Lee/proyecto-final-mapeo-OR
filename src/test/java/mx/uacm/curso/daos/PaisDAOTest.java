@@ -69,7 +69,7 @@ public class PaisDAOTest {
         Pais p = paisDAO.buscarPorId(2);
         Assertions.assertNotNull(p);
 
-        //Propar mapeo de Pais a Lugar
+        //Propar mapeo de Pais a Lugar (1-n)
         assertEquals(12, p.getLugar().size());
 
     }
