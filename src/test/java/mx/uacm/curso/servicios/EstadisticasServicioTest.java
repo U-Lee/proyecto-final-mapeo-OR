@@ -14,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import mx.uacm.curso.daos.TweetDAO;
 import mx.uacm.curso.daos.impl.EmocionDAOImpl;
+import mx.uacm.curso.daos.impl.PaisDAOImpl;
 import mx.uacm.curso.daos.impl.TweetDAOImpl;
 import mx.uacm.curso.daos.impl.UsuarioDAOImpl;
 import mx.uacm.curso.dtos.PaisYEmocionPredominanteDTO;
@@ -57,6 +58,10 @@ public class EstadisticasServicioTest {
         EstadisticasServicioImpl estadisticasServicioImpl = new EstadisticasServicioImpl();
         estadisticasServicioImpl.setEmocionDAO(new EmocionDAOImpl(em));
         estadisticasServicioImpl.setTweetDAO(new TweetDAOImpl(em));
+        
+        //Se añade esta linea para PaisDao
+        estadisticasServicioImpl.setPaisDAO(new PaisDAOImpl(em));
+
         //guardamos el servicio en la variable estatica
         estadisticasServicio = estadisticasServicioImpl;
         System.out.println("inicializado");
@@ -77,20 +82,21 @@ public class EstadisticasServicioTest {
 
     @Test
     public void test() throws Exception {
-        
+
     }
 
     @Test
-    public void emocionesPredominantesAgrupadasPorPais(){
+    public void emocionesPredominantesAgrupadasPorPais() {
         List<String> nombresHashtags = new ArrayList<>();
         nombresHashtags.add("github");
         nombresHashtags.add("gitlab");
-        GregorianCalendar cal = new GregorianCalendar(2020, 02, 10);
+        GregorianCalendar cal = new GregorianCalendar(2020, 01, 01);
         Date fechaMinima = cal.getTime();
-        GregorianCalendar cal2 = new GregorianCalendar(2020, 03, 10);
+        GregorianCalendar cal2 = new GregorianCalendar(2020, 02, 10);
         Date fechaMaxima = cal2.getTime();
-        List<PaisYEmocionPredominanteDTO> lista = 
-        estadisticasServicio.emocionesPredominantesAgrupadasPorPais(nombresHashtags, fechaMinima, fechaMaxima);
+        List<PaisYEmocionPredominanteDTO> lista
+                = estadisticasServicio.emocionesPredominantesAgrupadasPorPais(nombresHashtags, fechaMinima, fechaMaxima);
+
         assertEquals(2, lista.size());
     }
 }

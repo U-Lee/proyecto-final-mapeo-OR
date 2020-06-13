@@ -82,8 +82,8 @@ public class PaisDAOTest {
         tweetIds.add(3);
         tweetIds.add(4);
         tweetIds.add(7);
-        List<Pais> h = paisDAO.obtenPorTweetsIds(tweetIds);
-        assertEquals(3, h.size());
+        List<Pais> paises = paisDAO.obtenPorTweetsIds(tweetIds);
+        assertEquals(3, paises.size());
     }
 
 }

@@ -25,15 +25,15 @@ public class EmocionDAOImpl extends GenericDAOImpl<Emocion, Integer> implements 
         Query consulta = em.createQuery("SELECT AVG(e.animado)as animado,AVG(e.enojo),AVG(e.felicidad),AVG(e.indiferente),AVG(e.miedo),AVG(e.tristeza)\n"
                 + "FROM Emocion e WHERE e.id IN(:tweetsIds)");
         consulta.setParameter("tweetsIds", tweetsIds);
-        List<Object[]> renglones = consulta.getResultList();
+        Object[] resultado = (Object[]) consulta.getSingleResult();
 
         int indice = 0;
         int bandera = 0;
         double promMax = 0;
-        for (Object[] unRenglon : renglones) {
-            double renglon = (double) unRenglon[0];
-            if (renglon > promMax) {
-                promMax = renglon;
+        for (Object unRenglon : resultado) {
+            double emocion= (double) unRenglon;
+            if (emocion > promMax) {
+                promMax = emocion;
                 indice = bandera;
             }
             bandera++;
